@@ -1,6 +1,5 @@
 package tomaszewski.michal.aplikacjarowerowa.view.uiTrip;
 
-import com.sun.jna.platform.win32.Sspi;
 import com.vaadin.flow.component.ComponentEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.Key;
@@ -12,7 +11,6 @@ import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.component.timepicker.TimePicker;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
@@ -39,10 +37,10 @@ public class TripForm extends FormLayout {
 
 
     public TripForm(List<User> users, List<Bike> bikes) {
-        List<User> usersList = users;
+        this.getElement().getStyle().set("background-color", "Black");
         addClassName("contact-formTrip");
         binder.bindInstanceFields(this);
-        user.setItems(usersList);
+        user.setItems(users);
         user.setItemLabelGenerator(User::getUsername);
         bike.setItems(bikes);
         bike.setItemLabelGenerator(Bike::getModel);

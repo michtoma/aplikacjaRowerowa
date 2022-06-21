@@ -8,12 +8,9 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
 import tomaszewski.michal.aplikacjarowerowa.data.entity.Bike;
 import tomaszewski.michal.aplikacjarowerowa.data.service.ApiService;
 import tomaszewski.michal.aplikacjarowerowa.view.MainLayout;
-
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 
 @PageTitle("Bikes | Bike Trip Application")

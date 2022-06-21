@@ -1,25 +1,16 @@
 package tomaszewski.michal.aplikacjarowerowa.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vaadin.flow.templatemodel.Encode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.util.*;
 
 @Entity
@@ -36,11 +27,10 @@ public class User {
     private String username ="";
     @NotBlank
     private String password ="";
-
+    @NotBlank
     private String firstName = "";
     private String lastName ="";
     @NotNull
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date birthDate;
 
     @NotNull

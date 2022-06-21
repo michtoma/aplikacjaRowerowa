@@ -77,7 +77,6 @@ public class ContactFormBike extends FormLayout {
         }
     }
 
-    // Events
     public static abstract class ContactFormBikeEvent extends ComponentEvent<ContactFormBike> {
         private Bike bike;
 

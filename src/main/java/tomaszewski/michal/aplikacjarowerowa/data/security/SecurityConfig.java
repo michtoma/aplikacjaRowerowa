@@ -61,16 +61,6 @@ public class SecurityConfig extends VaadinWebSecurityConfigurerAdapter {
     }
     @Bean
     PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
-//    @Bean
-//    @Override
-//    protected UserDetailsService userDetailsService() {
-//
-//
-//
-//        return new InMemoryUserDetailsManager(User.withUsername("Michal").password("{noop}pass").roles("ADMIN").build(),User.withUsername("User").password("{noop}pass").roles("USER").build());
-//
-//        //TODO: wczytywanie z BD użytkowników z ich uprawnieniami
-//    }
 
 
 }

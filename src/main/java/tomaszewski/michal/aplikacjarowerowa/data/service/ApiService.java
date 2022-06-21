@@ -1,11 +1,4 @@
 package tomaszewski.michal.aplikacjarowerowa.data.service;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -19,7 +12,6 @@ import tomaszewski.michal.aplikacjarowerowa.data.repository.UserRepository;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -65,11 +57,6 @@ public class ApiService extends WebMvcConfigurerAdapter {
         return userRepository.findAll();
 
     }
-    public List<Trip> findAllTrips(){
-
-        return tripRepository.findAll();
-
-    }
 
     public long countTrip(){
         return tripRepository.count();
@@ -113,9 +100,6 @@ public class ApiService extends WebMvcConfigurerAdapter {
 
         }
         bikeRepository.save(bike);
-    }
-    public Date getTripDate(Trip trip){
-        return trip.getDate();
     }
     public double averageSpeed(Trip trip){
         double distance = trip.getDistance();

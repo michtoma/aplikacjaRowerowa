@@ -3,8 +3,6 @@ package tomaszewski.michal.aplikacjarowerowa.data.entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

@@ -38,11 +38,6 @@ public class Trip {
     private double distance;
     @NotNull
     private double time;
-
-    public Date getDate() {
-        return date;
-    }
-
     public Trip(Date date, String name, User user, Bike bike, double distance, double time) {
         this.date = date;
         this.name = name;

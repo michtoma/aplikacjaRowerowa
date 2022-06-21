@@ -9,14 +9,10 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
 import tomaszewski.michal.aplikacjarowerowa.data.entity.User;
 import tomaszewski.michal.aplikacjarowerowa.data.service.ApiService;
 import tomaszewski.michal.aplikacjarowerowa.view.MainLayout;
 
-import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 
 @Route(value = "userlist", layout = MainLayout.class)
@@ -25,7 +21,7 @@ import javax.annotation.security.RolesAllowed;
 public class UserView extends VerticalLayout {
     Grid<User> grid = new Grid<>(User.class);
     TextField filterText = new TextField();
-    ContactForm form;
+    contactFormUser form;
     private ApiService service;
     public UserView(ApiService service){
         this.service = service;
@@ -65,20 +61,20 @@ public class UserView extends VerticalLayout {
 
 
 
-        form = new ContactForm();
+        form = new contactFormUser();
         form.setWidth("25em");
 
-        form.addListener(ContactForm.SaveEvent.class, this::saveUser);
-        form.addListener(ContactForm.DeleteEvent.class, this::deleteUser);
-        form.addListener(ContactForm.CloseEvent.class, e-> closeEditor());
+        form.addListener(contactFormUser.SaveEvent.class, this::saveUser);
+        form.addListener(contactFormUser.DeleteEvent.class, this::deleteUser);
+        form.addListener(contactFormUser.CloseEvent.class, e-> closeEditor());
 
         }
-        private void saveUser(ContactForm.SaveEvent event){
+        private void saveUser(contactFormUser.SaveEvent event){
             service.saveUser(event.getContact());
             updateList();
             closeEditor();
         };
-    private void deleteUser(ContactForm.DeleteEvent event){
+    private void deleteUser(contactFormUser.DeleteEvent event){
         service.deleteUser(event.getContact());
         updateList();
         closeEditor();

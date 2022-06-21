@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.annotation.Nullable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -18,13 +19,13 @@ public class Bike {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @NonNull
+    @NotNull
     private String producer="";
-    @NonNull
+    @NotNull
     private String model ="";
-    @NonNull
+    @NotNull
     private double weight =0;
-    @NonNull
+    @NotNull
     private String type = "";
     @Nullable
     private double wheelSize;
@@ -35,12 +36,5 @@ public class Bike {
     private Set<Trip> trips = new LinkedHashSet<>();
 
 
-    public Bike(@NonNull String producer, @NonNull String model, @NonNull double weight, @NonNull String type, @NonNull double wheelSize) {
-        this.producer = producer;
-        this.model = model;
-        this.weight = weight;
-        this.type = type;
-        this.wheelSize = wheelSize;
-    }
 }
 
