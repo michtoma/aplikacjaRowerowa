@@ -8,6 +8,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.Lumo;
 import tomaszewski.michal.aplikacjarowerowa.data.entity.Bike;
 import tomaszewski.michal.aplikacjarowerowa.data.service.ApiService;
 import tomaszewski.michal.aplikacjarowerowa.view.MainLayout;
@@ -21,10 +22,12 @@ public class BikeView extends VerticalLayout {
 
     Grid<Bike> bikeGrid = new Grid<>(Bike.class);
     TextField filterText = new TextField();
-    ContactFormBike formBike;
-    private ApiService bikeService;
-    public BikeView(ApiService bikeService){
-        this.bikeService = bikeService;
+    BikeForm formBike;
+    private final ApiService service;
+    public BikeView(ApiService service){
+        this.getElement().setAttribute("theme", Lumo.DARK);
+
+        this.service = service;
         addClassName("bikeListView");
         setSizeFull();
 
@@ -46,7 +49,7 @@ public class BikeView extends VerticalLayout {
     }
 
     private void updateList() {
-        bikeGrid.setItems(bikeService.findAllBikes(filterText.getValue()));
+        bikeGrid.setItems(service.findAllBikes(filterText.getValue()));
     }
 
     private Component getContent(){
@@ -60,24 +63,24 @@ public class BikeView extends VerticalLayout {
     private void configureForm(){
 
 
-        formBike = new ContactFormBike();
+        formBike = new BikeForm();
         formBike.setWidth("25em");
 
-        formBike.addListener(ContactFormBike.SaveEvent.class, this::saveBike);
-        formBike.addListener(ContactFormBike.DeleteEvent.class, this::deleteBike);
-        formBike.addListener(ContactFormBike.CloseEvent.class, e-> closeEditor());
+        formBike.addListener(BikeForm.SaveEvent.class, this::saveBike);
+        formBike.addListener(BikeForm.DeleteEvent.class, this::deleteBike);
+        formBike.addListener(BikeForm.CloseEvent.class, e-> closeEditor());
 
     }
-    private void saveBike(ContactFormBike.SaveEvent event){
-        bikeService.saveBike(event.getContact());
+    private void saveBike(BikeForm.SaveEvent event){
+        service.saveBike(event.getContact());
         updateList();
         closeEditor();
-    };
-    private void deleteBike(ContactFormBike.DeleteEvent event){
-        bikeService.deleteBike(event.getContact());
+    }
+    private void deleteBike(BikeForm.DeleteEvent event){
+        service.deleteBike(event.getContact());
         updateList();
         closeEditor();
-    };
+    }
 
     private Component getToolbar() {
         filterText.setPlaceholder("Filter by bike...");

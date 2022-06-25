@@ -1,24 +1,19 @@
 package tomaszewski.michal.aplikacjarowerowa.view.uiTrip;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.lumo.Lumo;
 import tomaszewski.michal.aplikacjarowerowa.data.entity.Trip;
 import tomaszewski.michal.aplikacjarowerowa.data.service.ApiService;
 import tomaszewski.michal.aplikacjarowerowa.view.MainLayout;
 import javax.annotation.security.PermitAll;
-import javax.swing.*;
 
 @PageTitle("Trips | Bike Trip Application")
 @Route(value = "tripelist", layout = MainLayout.class)
@@ -29,11 +24,12 @@ public class TripView extends VerticalLayout {
     Grid<Trip> grideTrip = new Grid<>(Trip.class);
     TextField filterText = new TextField();
     TripForm formTrip;
-    private ApiService apiService;
+    private final ApiService apiService;
 
 
-    public TripView(ApiService tripservice){
-        this.apiService = tripservice;
+    public TripView(ApiService apiService){
+        this.apiService = apiService;
+        this.getElement().setAttribute("theme", Lumo.DARK);
 
         addClassName("tripListView");
         setSizeFull();
@@ -80,12 +76,12 @@ public class TripView extends VerticalLayout {
         apiService.saveTrip(event.getContact());
         updateList();
         closeEditor();
-    };
+    }
     private void deleteTrip(TripForm.DeleteEvent event){
         apiService.deleteTrip(event.getContact());
         updateList();
         closeEditor();
-    };
+    }
 
     private Component getToolbar() {
         filterText.setPlaceholder("Filter by trip...");

@@ -19,7 +19,7 @@ import tomaszewski.michal.aplikacjarowerowa.data.entity.Bike;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContactFormBike extends FormLayout {
+public class BikeForm extends FormLayout {
     Binder<Bike> binder = new BeanValidationBinder<>(Bike.class);
     TextField producer = new TextField("producer");
     TextField model = new TextField("Model");
@@ -31,10 +31,9 @@ public class ContactFormBike extends FormLayout {
     Button delete = new Button("Usuń");
     Button cancel = new Button("Zrezygnuj");
     private Bike bike;
-    private static final String userRole = "ADMIN";
 
 
-    public ContactFormBike() {
+    public BikeForm() {
         List<String> bikeType= new ArrayList<>();
         bikeType.add("MTB");
         bikeType.add("ROAD");
@@ -77,10 +76,10 @@ public class ContactFormBike extends FormLayout {
         }
     }
 
-    public static abstract class ContactFormBikeEvent extends ComponentEvent<ContactFormBike> {
-        private Bike bike;
+    public static abstract class ContactFormBikeEvent extends ComponentEvent<BikeForm> {
+        private final Bike bike;
 
-        protected ContactFormBikeEvent(ContactFormBike source, Bike bike) {
+        protected ContactFormBikeEvent(BikeForm source, Bike bike) {
             super(source, false);
             this.bike = bike;
         }
@@ -91,20 +90,20 @@ public class ContactFormBike extends FormLayout {
     }
 
     public static class SaveEvent extends ContactFormBikeEvent {
-        SaveEvent(ContactFormBike source, Bike bike) {
+        SaveEvent(BikeForm source, Bike bike) {
             super(source, bike);
         }
     }
 
     public static class DeleteEvent extends ContactFormBikeEvent {
-        DeleteEvent(ContactFormBike source, Bike bike) {
+        DeleteEvent(BikeForm source, Bike bike) {
             super(source, bike);
         }
 
     }
 
     public static class CloseEvent extends ContactFormBikeEvent {
-        CloseEvent(ContactFormBike source) {
+        CloseEvent(BikeForm source) {
             super(source, null);
         }
     }

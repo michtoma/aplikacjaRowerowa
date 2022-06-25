@@ -27,13 +27,12 @@ public class LoginView extends VerticalLayout implements BeforeEnterListener {
         setJustifyContentMode(JustifyContentMode.CENTER);
 
         login.setAction("login");
-        login.getElement().setAttribute("theme",Lumo.DARK);
+        this.getElement().setAttribute("theme",Lumo.DARK);
         add(new H1("Bike CRM"), login);
     }
 
     @Override
     public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
-        // inform the user about an authentication error
         if(beforeEnterEvent.getLocation()
                 .getQueryParameters()
                 .getParameters()

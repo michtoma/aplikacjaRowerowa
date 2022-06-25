@@ -28,7 +28,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class contactFormUser extends FormLayout {
+public class FormUser extends FormLayout {
 
     Binder<User> binder = new BeanValidationBinder<>(User.class);
     TextField username = new TextField("username");
@@ -44,7 +44,7 @@ public class contactFormUser extends FormLayout {
     private User user;
 
 
-    public contactFormUser() {
+    public FormUser() {
         List<String> roles= new ArrayList<>();
         roles.add("ADMIN");
         roles.add("USER");
@@ -86,11 +86,11 @@ public class contactFormUser extends FormLayout {
         }
     }
 
-    // Events
-    public static abstract class ContactFormEvent extends ComponentEvent<contactFormUser> {
-        private User user;
 
-        protected ContactFormEvent(contactFormUser source, User user) {
+    public static abstract class ContactFormEvent extends ComponentEvent<FormUser> {
+        private final User user;
+
+        protected ContactFormEvent(FormUser source, User user) {
             super(source, false);
             this.user = user;
         }
@@ -101,20 +101,20 @@ public class contactFormUser extends FormLayout {
     }
 
     public static class SaveEvent extends ContactFormEvent {
-        SaveEvent(contactFormUser source, User user) {
+        SaveEvent(FormUser source, User user) {
             super(source, user);
         }
     }
 
     public static class DeleteEvent extends ContactFormEvent {
-        DeleteEvent(contactFormUser source, User user) {
+        DeleteEvent(FormUser source, User user) {
             super(source, user);
         }
 
     }
 
     public static class CloseEvent extends ContactFormEvent {
-        CloseEvent(contactFormUser source) {
+        CloseEvent(FormUser source) {
             super(source, null);
         }
     }

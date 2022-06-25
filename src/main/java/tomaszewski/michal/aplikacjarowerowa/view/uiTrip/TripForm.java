@@ -23,12 +23,12 @@ import java.util.List;
 
 public class TripForm extends FormLayout {
     private Trip trip;
-    DatePicker date = new DatePicker("date");
-    TextField name = new TextField("name");
-    ComboBox<User> user= new ComboBox("user");
-    ComboBox<Bike> bike= new ComboBox("bike");
+    DatePicker date = new DatePicker("Date");
+    TextField name = new TextField("Name");
+    ComboBox<User> user= new ComboBox("User");
+    ComboBox<Bike> bike= new ComboBox("Bike");
     NumberField time = new NumberField("Time in minutes");
-    NumberField distance = new NumberField("distance (m)");
+    NumberField distance = new NumberField("Distance (m)");
     Button save = new Button("Zapisz");
     Button delete = new Button("Usuń");
     Button cancel = new Button("Zrezygnuj");
@@ -37,7 +37,7 @@ public class TripForm extends FormLayout {
 
 
     public TripForm(List<User> users, List<Bike> bikes) {
-        this.getElement().getStyle().set("background-color", "Black");
+
         addClassName("contact-formTrip");
         binder.bindInstanceFields(this);
         user.setItems(users);
@@ -76,9 +76,9 @@ public class TripForm extends FormLayout {
         }
     }
 
-    // Events
+
     public static abstract class ContactFormTripEvent extends ComponentEvent<TripForm> {
-        private Trip trip;
+        private final Trip trip;
 
         protected ContactFormTripEvent(TripForm source, Trip trip) {
             super(source, false);
